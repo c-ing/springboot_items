@@ -1,0 +1,18 @@
+
+spring:
+  datasource:
+    db1:
+      driverClassName: com.mysql.jdbc.Driver
+      username: root
+      password: 123456
+      # spring2.0此处为jdbc-url
+      url: jdbc:mysql://127.0.0.1:3306/springboot_demo?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+      type: com.alibaba.druid.pool.DruidDataSource
+    db2:
+      driverClassName: com.mysql.jdbc.Driver
+      username: root
+      password: 123456
+      # spring2.0此处为jdbc-url
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/local_zy?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+      type: com.alibaba.druid.pool.DruidDataSource
+
