@@ -24,9 +24,15 @@
 
     <insert id="saveUser" parameterType="com.spring.demo.pojo.User">
         INSERT INTO `user`
-           (id, `name`)
+           (id, `name`,age,cre_time)
         VALUES
-           ( #{id}, #{name} )
+           ( #{id}, #{name},#{age},#{creTime} )
     </insert>
+
+    <update id="updateUser" parameterType="com.spring.demo.pojo.User">
+        update user set age = #{age},cre_time = now()
+        where id = 3
+    </update>
+
 
 </mapper>

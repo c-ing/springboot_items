@@ -23,11 +23,11 @@ import java.io.IOException;
  * @Description:
  */
 
-@Configuration
-@MapperScan(basePackages = "com.spring.demo.mapper.db1",sqlSessionFactoryRef = "db1SqlSessionFactory")
+//@Configuration
+//@MapperScan(basePackages = "com.spring.demo.mapper.db1",sqlSessionFactoryRef = "db1SqlSessionFactory")
 public class DataSource1Config {
 
-    @Bean
+   /* @Bean
     @ConfigurationProperties(prefix = "spring.datasource.db1")
     @Primary
     public DataSource db1DataSource() {
@@ -54,5 +54,5 @@ public class DataSource1Config {
     @Primary
     public SqlSessionTemplate db1SqlSessionTemplate(@Qualifier("db1SqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
-    }
+    }*/
 }

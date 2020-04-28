@@ -17,4 +17,6 @@ public interface UserMapper2 {
     List<User> selectUserList();
 
     void saveUser(User user);
+
+    void updateUser(User user);
 }

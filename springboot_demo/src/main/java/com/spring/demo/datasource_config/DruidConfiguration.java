@@ -17,6 +17,11 @@ import javax.servlet.ServletRegistration;
 @Configuration
 public class DruidConfiguration {
 
+    /**
+     * 编写完之后，启动程序，在浏览器输入:http://127.0.0.1:8080/druid/index.html ，
+     * 然后输入设置的用户名和密码，便可以访问Web界面了。
+     * @return
+     */
     @Bean
     public ServletRegistrationBean druidStatViewService() {
         //注册服务
@@ -27,7 +32,7 @@ public class DruidConfiguration {
         // IP黑名单 (存在共同时，deny优先于allow)
         servletRegistrationBean.addInitParameter("deny", "127.0.0.2");
         // 设置登录的用户名和密码
-        servletRegistrationBean.addInitParameter("loginUsername", "pancm");
+        servletRegistrationBean.addInitParameter("loginUsername", "root");
         servletRegistrationBean.addInitParameter("loginPassword", "123456");
         // 是否能够重置数据.
         servletRegistrationBean.addInitParameter("resetEnable", "false");

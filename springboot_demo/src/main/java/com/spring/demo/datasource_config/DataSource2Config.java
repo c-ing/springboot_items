@@ -19,11 +19,11 @@ import javax.sql.DataSource;
  * @Date: 2020/4/27 15:46
  * @Description:
  */
-@Configuration
-@MapperScan(basePackages = "com.spring.demo.mapper.db2", sqlSessionTemplateRef = "db2SqlSessionTemplate")
+//@Configuration
+//@MapperScan(basePackages = "com.spring.demo.mapper.db2", sqlSessionTemplateRef = "db2SqlSessionTemplate")
 public class DataSource2Config {
 
-    @Bean
+  /*  @Bean
     @ConfigurationProperties(prefix = "spring.datasource.db2")
     public DataSource db2DataSource() {
         return DataSourceBuilder.create().build();
@@ -45,5 +45,5 @@ public class DataSource2Config {
     @Bean
     public SqlSessionTemplate db2SqlSessionTemplate(@Qualifier("db2SqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
-    }
+    }*/
 }

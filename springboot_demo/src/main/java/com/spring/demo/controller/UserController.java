@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,5 +27,16 @@ public class UserController {
     @ResponseBody
     public List<User> getList() {
         return userService.selectUserList();
+    }
+
+    @RequestMapping("/saveUser")
+    @ResponseBody
+    public String saveUser() {
+        User user = new User();
+        user.setCreTime(new Date());
+        user.setName("李四");
+        user.setAge(20);
+        userService.saveUser(user);
+        return "success";
     }
 }
