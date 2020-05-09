@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -23,20 +24,23 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/getList")
+    /*@RequestMapping("/getList")
     @ResponseBody
     public List<User> getList() {
         return userService.selectUserList();
-    }
+    }*/
 
     @RequestMapping("/saveUser")
     @ResponseBody
-    public String saveUser() {
+    public String saveUser() throws IOException {
         User user = new User();
         user.setCreTime(new Date());
         user.setName("李四");
         user.setAge(20);
         userService.saveUser(user);
+       // userService.saveUser1(user);
+       // userService.selectUserList();
+        //int i = 1/0;
         return "success";
     }
 }
