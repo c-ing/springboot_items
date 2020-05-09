@@ -2,6 +2,7 @@ package com.spring.demo.service;
 
 import com.spring.demo.pojo.User;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -13,5 +14,11 @@ public interface UserService {
 
     List<User> selectUserList();
 
-    void saveUser(User user);
+    void saveUser(User user) throws IOException;
+
+    //void saveUser1(User user);
+
+    void saveUser2(User user);
+
+    void saveUser3(User user);
 }
