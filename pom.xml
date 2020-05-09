@@ -20,6 +20,7 @@
         <module>springboot_demo</module>
         <module>springboot_redis_demo</module>
         <module>java_items_demo</module>
+        <module>rabbit-api</module>
     </modules>
 
     <properties>
