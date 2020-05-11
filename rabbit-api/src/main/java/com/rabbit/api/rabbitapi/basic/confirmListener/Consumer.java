@@ -3,7 +3,7 @@ package com.rabbit.api.rabbitapi.basic.confirmListener;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.QueueingConsumer;
+import com.rabbitmq.client.DefaultConsumer;
 
 public class Consumer {
 
@@ -31,16 +31,16 @@ public class Consumer {
         channel.queueBind(queueName, exchangeName, routingKey);
 
         // 5. 创建消费者
-        QueueingConsumer queueingConsumer = new QueueingConsumer(channel);
+        DefaultConsumer queueingConsumer = new DefaultConsumer(channel);
 
         // 6. 设置channel
         channel.basicConsume(queueName, true, queueingConsumer);
 
         // 7. 获取消息
         while (true) {
-            QueueingConsumer.Delivery deliver = queueingConsumer.nextDelivery();
+            /*QueueingConsumer.Delivery deliver = queueingConsumer.nextDelivery();
             String msg = new String(deliver.getBody());
-            System.err.println("消费端：" + msg);
+            System.err.println("消费端：" + msg);*/
 
         }
     }
