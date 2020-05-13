@@ -3,7 +3,6 @@ package com.rabbit.api.rabbitapi.basic.topic;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.QueueingConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +40,7 @@ public class Consumer4TopicExchange {
         channel.queueBind(queueName, exchangeName, routingKey);
 
         // durable 是否持久化消息
-        QueueingConsumer consumer = new QueueingConsumer(channel);
+       /* QueueingConsumer consumer = new QueueingConsumer(channel);
         // 参数：队列名称，是否自动ack,consumer
         channel.basicConsume(queueName,true,consumer);
 
@@ -51,7 +50,7 @@ public class Consumer4TopicExchange {
             QueueingConsumer.Delivery delivery = consumer.nextDelivery();
             String msg = new String(delivery.getBody());
             logger.info("收到消息：{}",msg);
-        }
+        }*/
 
 
     }

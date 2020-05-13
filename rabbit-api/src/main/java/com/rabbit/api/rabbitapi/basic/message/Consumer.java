@@ -3,7 +3,6 @@ package com.rabbit.api.rabbitapi.basic.message;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.QueueingConsumer;
 
 import java.util.Map;
 
@@ -29,10 +28,10 @@ public class Consumer {
         channel.queueDeclare(queueName, true, false, false, null);
 
         // 5. 创建消费者
-        QueueingConsumer queueingConsumer = new QueueingConsumer(channel);
+      //  QueueingConsumer queueingConsumer = new QueueingConsumer(channel);
 
         // 6. 设置channel
-        channel.basicConsume(queueName, true, queueingConsumer);
+        /*channel.basicConsume(queueName, true, queueingConsumer);
 
         // 7. 获取消息
         while (true) {
@@ -41,6 +40,6 @@ public class Consumer {
             System.err.println("消费端："+msg);
             Map<String,Object>  headers = deliver.getProperties().getHeaders();
             System.err.println("headers get my1 value： "+headers.get("my1"));
-        }
+        }*/
     }
 }
