@@ -2,6 +2,8 @@ package com.spring.demo.datasource_config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +18,8 @@ import javax.servlet.ServletRegistration;
  */
 @Configuration
 public class DruidConfiguration {
+
+    private static Logger logger = LoggerFactory.getLogger(DruidConfiguration.class);
 
     /**
      * 编写完之后，启动程序，在浏览器输入:http://127.0.0.1:8080/druid/index.html ，
@@ -48,7 +52,7 @@ public class DruidConfiguration {
         // 添加不需要忽略的格式信息
         filterRegistrationBean.addInitParameter("exclusions",
                 "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
-        System.out.println("druid初始化成功!");
+       logger.info("druid初始化成功!");
         return filterRegistrationBean;
 
     }

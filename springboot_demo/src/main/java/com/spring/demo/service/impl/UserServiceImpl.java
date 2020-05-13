@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
          //   throw new RuntimeException("数据源1抛出异常");
 
        saveUser1(user);
-        otherTask();
+      //  otherTask();
     //    int i = 1/0;
      //   saveUser2(user);
        // userMapper1.updateUser(user);
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
        // if (i == 1) {
         //    throw new RuntimeException("数据源1抛出异常");
        // }
-        System.out.println("===============数据源1结束");
+        logger.info("===============数据源1结束");
     }
 
     //因为文件不存在，一定会抛出一个IOException
