@@ -2,6 +2,8 @@ package com.spring.demo.controller;
 
 import com.spring.demo.pojo.User;
 import com.spring.demo.service.VolatileService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import java.util.concurrent.Executors;
  * @Date: 2020/4/15 11:28
  * @Description:
  */
+@Api(tags = "VolatileController", value = "volatile管理")
 @Controller
 @RequestMapping("/volatile")
 public class VolatileController {

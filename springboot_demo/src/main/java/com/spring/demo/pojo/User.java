@@ -1,5 +1,7 @@
 package com.spring.demo.pojo;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 
 /**
@@ -9,12 +11,16 @@ import java.util.Date;
  */
 public class User {
 
+    @ApiModelProperty(value = "用户id")
     private Integer id;
 
+    @ApiModelProperty(value = "用户名称")
     private volatile String name;
 
+    @ApiModelProperty(value = "用户年龄")
     private Integer age;
 
+    @ApiModelProperty(value = "用户创建时间")
     private Date creTime;
 
     public Date getCreTime() {
