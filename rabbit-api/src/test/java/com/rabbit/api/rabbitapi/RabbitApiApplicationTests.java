@@ -1,5 +1,6 @@
 package com.rabbit.api.rabbitapi;
 
+import com.rabbit.api.rabbitapi.producer.RabbitSender;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.Message;
@@ -10,6 +11,11 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @SpringBootTest
 class RabbitApiApplicationTests {
@@ -46,6 +52,19 @@ class RabbitApiApplicationTests {
                 return message;
             }
         });
+    }
+
+    @Autowired
+    private RabbitSender rabbitSender;
+
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SS");
+
+    @Test
+    public void testSend1() throws Exception {
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("number", "12345");
+        properties.put("send_time", simpleDateFormat.format(new Date()));
+        rabbitSender.send("Hello RabbitMQ For Spring Boot",properties);
     }
 
 }
