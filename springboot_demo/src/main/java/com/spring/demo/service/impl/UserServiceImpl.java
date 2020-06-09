@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
     @Transactional//(rollbackFor = Exception.class)
    // @Transactional(transactionManager = "clusterTransactionManager")
     @Override
-    public void saveUser(User user) throws IOException{
+    public void saveUser(User user){
 
          //   throw new RuntimeException("数据源1抛出异常");
 

@@ -21,6 +21,7 @@ public class MyExecutorPoolConfig {
         int curSystemThreads = Runtime.getRuntime().availableProcessors() * 2;
         System.out.println("------------系统可用线程池个数：" + curSystemThreads);
         // 创建线程池
+
         ExecutorService pool = Executors.newFixedThreadPool(curSystemThreads);
         return pool;
     }

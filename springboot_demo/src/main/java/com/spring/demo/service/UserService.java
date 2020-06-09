@@ -14,7 +14,7 @@ public interface UserService {
 
     List<User> selectUserList();
 
-    void saveUser(User user) throws IOException;
+    void saveUser(User user);
 
     //void saveUser1(User user);
 
