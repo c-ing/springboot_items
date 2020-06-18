@@ -7,6 +7,7 @@ import com.spring.demo.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +23,7 @@ import java.util.List;
  */
 
 @Transactional
-@Service
+@Service("userServiceImpl")
 public class UserServiceImpl implements UserService {
 
     public static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -36,12 +37,12 @@ public class UserServiceImpl implements UserService {
    // @Transactional
     @Override
     public List<User> selectUserList() {
-        //List<User> users1 = userMapper1.selectUserList();
+        List<User> users1 = userMapper1.selectUserList();
        // List<User> users2 = userMapper2.selectUserList();
         //users1.addAll(users2);
-        //return users1;
-        int i = 1/0;
-        return null;
+        return users1;
+        //int i = 1/0;
+        //return null;
     }
 
     @Transactional//(rollbackFor = Exception.class)
