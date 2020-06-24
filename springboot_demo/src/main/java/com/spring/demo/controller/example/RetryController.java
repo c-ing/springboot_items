@@ -1,4 +1,4 @@
-package com.spring.demo.controller;
+package com.spring.demo.controller.example;
 
 import com.spring.demo.pojo.User;
 import com.spring.demo.retry.UserServiceProxyImpl;
@@ -33,5 +33,6 @@ public class RetryController {
 
        // UserService proxyUserService = (UserService) DynamicProxy.getProxy(userService2);
         //return proxyUserService.selectUserList();
+        return null;
     }
 }

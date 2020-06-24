@@ -18,7 +18,7 @@ public class LoginAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginAspect.class);
 
-    @Around(value = "execution(* com.spring.demo.controller.VolatileController.editUser())")
+    @Around(value = "execution(* com.spring.demo.controller.example.VolatileController.editUser())")
     public Object loginAspect(ProceedingJoinPoint jp) throws Throwable {
         Object[] args = jp.getArgs();
         logger.info("登录开始");

@@ -1,7 +1,6 @@
-package com.spring.demo.controller;
+package com.spring.demo.controller.example;
 
 import com.spring.demo.retry.RetryConstant;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -12,13 +11,13 @@ import java.lang.reflect.Proxy;
  * @Date: 2020/6/16 14:11
  * @Description: 重试机制的动态代理实现
  */
-@Component
+
 public class DynamicProxy implements InvocationHandler {
 
     private final Object subject;
 
     public DynamicProxy(Object realSubject) {
-        this.subject = subject;
+        this.subject = realSubject;
     }
 
     @Override

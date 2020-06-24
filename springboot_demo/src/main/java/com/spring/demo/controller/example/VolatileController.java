@@ -1,4 +1,4 @@
-package com.spring.demo.controller;
+package com.spring.demo.controller.example;
 
 import com.spring.demo.pojo.User;
 import com.spring.demo.service.VolatileService;

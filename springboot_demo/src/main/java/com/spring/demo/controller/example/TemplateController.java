@@ -1,4 +1,4 @@
-package com.spring.demo.controller;
+package com.spring.demo.controller.example;
 
 import com.spring.demo.service.HourseService;
 import org.springframework.beans.factory.annotation.Autowired;

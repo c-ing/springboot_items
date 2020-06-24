@@ -22,7 +22,7 @@ import java.util.List;
  * @Description:
  */
 
-@Transactional
+
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService {
 
@@ -101,5 +101,6 @@ public class UserServiceImpl implements UserService {
         }*/
         System.out.println("===============数据源2结束");
     }
+
 
 }
