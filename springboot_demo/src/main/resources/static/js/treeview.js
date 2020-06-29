@@ -1,0 +1,15 @@
+//级联选择：选中
+$("#treeview").on('nodeChecked',function(event,node){
+    alert("");
+    if($("#multiState").prop('checked'))
+        checkChildren(node,$('#treeview'));
+    else
+        $("#treeview").treeview('checkNode',[node.nodeId,{silent:true}]);
+});
+//级联选择：取消选中
+$("#treeview").on('nodeUnchecked',function(event,node){
+    if($("#multiState").prop('checked'))
+        unCheckChildren(node,$("#treeview"));
+    else
+        $("#treeview").treeview('uncheckNode',[node.nodeId,{silent:true}]);
+});

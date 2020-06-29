@@ -142,6 +142,20 @@
                     <li class="nav-click <#if pageName == "user">active</#if>" ><a href="${request.contextPath}/user"><i class="fa fa-circle-o text-purple"></i><span>用户管理</span></a></li>
 				<#--</#if>-->
 				<li class="nav-click <#if pageName == "help">active</#if>" ><a href="${request.contextPath}/help"><i class="fa fa-circle-o text-gray"></i><span>使用教程</span></a></li>
+
+				<!-- treeview-->
+				<li class=" treeview"> <!-- 鼠标选中导航active-->
+					<a href="#">
+						<i class="fa fa-dashboard"></i><span>面板</span>
+						<span class="pull-right-container">
+							<i class="fa fa-angle-left pull-right"></i>
+						</span>
+					</a>
+					<ul class="treeview-menu">
+						<li class="active"><a href="pages/dashboard"><i class="fa fa-circle-o"></i>面板 v1</a></li>
+						<li ><a href="pages/dashboard"><i class="fa fa-circle-o"></i>面板 v2</a></li>
+					</ul>
+				</li>
 			</ul>
 		</section>
 		<!-- /.sidebar -->
