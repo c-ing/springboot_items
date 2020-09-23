@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Auther: cdc
@@ -42,5 +44,10 @@ public class LocalDateTimeSerializerConfig {
 
     public void setPattern(String pattern) {
         this.pattern = pattern;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> a = new ArrayList<>();
+        System.out.println(a.size());
     }
 }
