@@ -11,6 +11,7 @@ import com.spring.demo.pojo.PilebodycheckMonthDto;
 import com.spring.demo.util.DateUtil;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -135,11 +136,15 @@ public class IndexController {
 
     @RequestMapping("/index2")
     public void easyExcelTest(HttpServletResponse response) throws IOException {
-        List<PilebodycheckMonthDto> pilebodysList = new ArrayList();//pilebodycheckService.pilebodystatisticsmonth(sysDepartDto, month);
+        List<PilebodycheckMonthDto> pilebodysList = new ArrayList(3);//pilebodycheckService.pilebodystatisticsmonth(sysDepartDto, month);
+        pilebodysList.add(new PilebodycheckMonthDto());
+        pilebodysList.add(new PilebodycheckMonthDto());
+        pilebodysList.add(new PilebodycheckMonthDto());
         //设置序号
-        for (int i = 1;i <= pilebodysList.size();i++){
-            pilebodysList.get(i-1).setOrderNum(i+"");
-        }
+        pilebodysList.get(0).setOrderNum("至上月末");
+        pilebodysList.get(1).setOrderNum("本月合计");
+        pilebodysList.get(2).setOrderNum("本年累计");
+
         response.setContentType("application/vnd.ms-excel");
         response.setCharacterEncoding("utf-8");
         // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
@@ -163,6 +168,8 @@ public class IndexController {
         contentWriteCellStyle.setWriteFont(contentWriteFont);
 //头策略使用默认
         WriteCellStyle headWriteCellStyle = new WriteCellStyle();
+        headWriteCellStyle.setFillForegroundColor(IndexedColors.WHITE.index);
+       // headWriteCellStyle.setWrapped(false);
 
         //excel如需下载到本地,只需要将response.getOutputStream()换成File即可(注释掉以上response代码)
         EasyExcel.write(response.getOutputStream(), PilebodycheckMonthDto.class)
@@ -173,7 +180,7 @@ public class IndexController {
                 .registerWriteHandler(new HorizontalCellStyleStrategy(headWriteCellStyle,contentWriteCellStyle))
                 .sheet("存量建筑垃圾堆体治理进度月报表")
                 //设置默认样式及写入头信息开始的行数
-                .useDefaultStyle(true).relativeHeadRowIndex(3)
+                .useDefaultStyle(true).relativeHeadRowIndex(9)
                 //这里的addsumColomn方法是个添加合计的方法,可删除
                 .doWrite(pilebodysList);
        // return new WebApiResponse(200, "生成excel文件成功", null);
