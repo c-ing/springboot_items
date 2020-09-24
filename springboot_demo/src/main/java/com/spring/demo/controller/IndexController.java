@@ -1,13 +1,17 @@
 package com.spring.demo.controller;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.support.ExcelTypeEnum;
+import com.alibaba.excel.write.metadata.WriteSheet;
 import com.alibaba.excel.write.metadata.style.WriteCellStyle;
 import com.alibaba.excel.write.metadata.style.WriteFont;
 import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
 import com.spring.demo.common.ReturnT;
 import com.spring.demo.pojo.MonthSheetWriteHandler;
+import com.spring.demo.pojo.MonthSheetWriteHandlersecond;
 import com.spring.demo.pojo.PilebodycheckMonthDto;
+import com.spring.demo.pojo.WriteTest;
 import com.spring.demo.util.DateUtil;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
@@ -137,13 +141,16 @@ public class IndexController {
     @RequestMapping("/index2")
     public void easyExcelTest(HttpServletResponse response) throws IOException {
         List<PilebodycheckMonthDto> pilebodysList = new ArrayList(3);//pilebodycheckService.pilebodystatisticsmonth(sysDepartDto, month);
-        pilebodysList.add(new PilebodycheckMonthDto());
+       /* pilebodysList.add(new PilebodycheckMonthDto());
         pilebodysList.add(new PilebodycheckMonthDto());
         pilebodysList.add(new PilebodycheckMonthDto());
         //设置序号
         pilebodysList.get(0).setOrderNum("至上月末");
         pilebodysList.get(1).setOrderNum("本月合计");
-        pilebodysList.get(2).setOrderNum("本年累计");
+        pilebodysList.get(2).setOrderNum("本年累计");*/
+
+       // WriteTest.tableWrite2(response.getOutputStream());
+
 
         response.setContentType("application/vnd.ms-excel");
         response.setCharacterEncoding("utf-8");
@@ -178,11 +185,16 @@ public class IndexController {
                 //设置拦截器或自定义样式
                 .registerWriteHandler(new MonthSheetWriteHandler())
                 .registerWriteHandler(new HorizontalCellStyleStrategy(headWriteCellStyle,contentWriteCellStyle))
-                .sheet("存量建筑垃圾堆体治理进度月报表")
+
+                .sheet("企业对账函")
                 //设置默认样式及写入头信息开始的行数
-                .useDefaultStyle(true).relativeHeadRowIndex(9)
+                .useDefaultStyle(true)
+                .relativeHeadRowIndex(9)
+
                 //这里的addsumColomn方法是个添加合计的方法,可删除
                 .doWrite(pilebodysList);
-       // return new WebApiResponse(200, "生成excel文件成功", null);
+
+
+        // return new WebApiResponse(200, "生成excel文件成功", null);
     }
 }
