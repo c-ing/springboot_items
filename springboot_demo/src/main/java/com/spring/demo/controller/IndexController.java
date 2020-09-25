@@ -8,6 +8,7 @@ import com.alibaba.excel.write.metadata.style.WriteCellStyle;
 import com.alibaba.excel.write.metadata.style.WriteFont;
 import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
 import com.spring.demo.common.ReturnT;
+import com.spring.demo.easyExcel.ZipUtil;
 import com.spring.demo.pojo.*;
 import com.spring.demo.util.DateUtil;
 import org.apache.poi.ss.usermodel.BorderStyle;
@@ -147,11 +148,11 @@ public class IndexController {
         pilebodysList.get(2).setOrderNum("本年累计");
 
 
-        response.setContentType("application/vnd.ms-excel");
+      /*  response.setContentType("application/vnd.ms-excel");
         response.setCharacterEncoding("utf-8");
         // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
         String fileName = URLEncoder.encode("企业对账函-函证账户余额及发票", "UTF-8");
-        response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xls");
+        response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xls");*/
         //内容样式策略
         WriteCellStyle contentWriteCellStyle = new WriteCellStyle();
         //垂直居中,水平居中
@@ -194,7 +195,7 @@ public class IndexController {
                 //这里的addsumColomn方法是个添加合计的方法,可删除
                 .doWrite(pilebodysList);*/
 
-        ExcelWriter excelWriter = null;
+        /*ExcelWriter excelWriter = null;
         try{
             MonthSheetWriteHandler monthSheetWriteHandler = new MonthSheetWriteHandler();
             monthSheetWriteHandler.setSupplierName("xx供应商");
@@ -218,9 +219,8 @@ public class IndexController {
             if (excelWriter != null) {
                 excelWriter.finish();
             }
-        }
-
-
-        // return new WebApiResponse(200, "生成excel文件成功", null);
+        }*/
+        ZipUtil zipUtil = new ZipUtil();
+        zipUtil.execute(response);
     }
 }
