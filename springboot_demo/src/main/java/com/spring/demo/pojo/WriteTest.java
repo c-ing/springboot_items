@@ -83,7 +83,7 @@ public class WriteTest {
         List<PilebodycheckMonthDto> list = new ArrayList<PilebodycheckMonthDto>();
         for (int i = 0; i < 3; i++) {
             PilebodycheckMonthDto data = new PilebodycheckMonthDto();
-            data.setOrderNum2("s");
+            data.setOrderNum("s");
             data.setAddress("s");
             data.setAreastr("s");
             data.setHeightstr("s");

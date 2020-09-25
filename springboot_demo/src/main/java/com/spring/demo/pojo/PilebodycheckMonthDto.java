@@ -3,6 +3,7 @@ package com.spring.demo.pojo;
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.write.style.ColumnWidth;
+import com.alibaba.excel.annotation.write.style.ContentRowHeight;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -16,22 +17,22 @@ import lombok.experimental.Accessors;
 @Data
 @NoArgsConstructor
 @Accessors(chain = true)
+@ContentRowHeight((short) 35)
 public class PilebodycheckMonthDto {
 
-
-    @ColumnWidth(28)
+    @ColumnWidth(20)
     @ExcelProperty(value = "项目",index = 1)
-    private String orderNum2;
+    private String orderNum;
 
-    @ColumnWidth(28)
+    @ColumnWidth(20)
     @ExcelProperty(value = "当月货物发生额",index = 2)
     private String name;
 
-    @ColumnWidth(28)
+    @ColumnWidth(20)
     @ExcelProperty(value = "当月付款金额",index = 3)
     private String address;
 
-    @ColumnWidth(28)
+    @ColumnWidth(20)
     @ExcelProperty(value = "当月开票金额",index = 4)
     private String areastr;
 

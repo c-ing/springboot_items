@@ -8,10 +8,7 @@ import com.alibaba.excel.write.metadata.style.WriteCellStyle;
 import com.alibaba.excel.write.metadata.style.WriteFont;
 import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
 import com.spring.demo.common.ReturnT;
-import com.spring.demo.pojo.MonthSheetWriteHandler;
-import com.spring.demo.pojo.MonthSheetWriteHandlersecond;
-import com.spring.demo.pojo.PilebodycheckMonthDto;
-import com.spring.demo.pojo.WriteTest;
+import com.spring.demo.pojo.*;
 import com.spring.demo.util.DateUtil;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
@@ -141,15 +138,13 @@ public class IndexController {
     @RequestMapping("/index2")
     public void easyExcelTest(HttpServletResponse response) throws IOException {
         List<PilebodycheckMonthDto> pilebodysList = new ArrayList(3);//pilebodycheckService.pilebodystatisticsmonth(sysDepartDto, month);
-       /* pilebodysList.add(new PilebodycheckMonthDto());
+        pilebodysList.add(new PilebodycheckMonthDto());
         pilebodysList.add(new PilebodycheckMonthDto());
         pilebodysList.add(new PilebodycheckMonthDto());
         //设置序号
         pilebodysList.get(0).setOrderNum("至上月末");
         pilebodysList.get(1).setOrderNum("本月合计");
-        pilebodysList.get(2).setOrderNum("本年累计");*/
-
-       // WriteTest.tableWrite2(response.getOutputStream());
+        pilebodysList.get(2).setOrderNum("本年累计");
 
 
         response.setContentType("application/vnd.ms-excel");
@@ -159,27 +154,32 @@ public class IndexController {
         response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xls");
         //内容样式策略
         WriteCellStyle contentWriteCellStyle = new WriteCellStyle();
-//垂直居中,水平居中
+        //垂直居中,水平居中
         contentWriteCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         contentWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);
         contentWriteCellStyle.setBorderLeft(BorderStyle.THIN);
         contentWriteCellStyle.setBorderTop(BorderStyle.THIN);
         contentWriteCellStyle.setBorderRight(BorderStyle.THIN);
         contentWriteCellStyle.setBorderBottom(BorderStyle.THIN);
-//设置 自动换行
+
+        //设置 自动换行
         contentWriteCellStyle.setWrapped(true);
-// 字体策略
+        // 字体策略
         WriteFont contentWriteFont = new WriteFont();
-// 字体大小
-        contentWriteFont.setFontHeightInPoints((short) 12);
+        // 字体大小
+        contentWriteFont.setFontHeightInPoints((short) 11);
         contentWriteCellStyle.setWriteFont(contentWriteFont);
-//头策略使用默认
+
+        //头策略使用默认
         WriteCellStyle headWriteCellStyle = new WriteCellStyle();
         headWriteCellStyle.setFillForegroundColor(IndexedColors.WHITE.index);
+        WriteFont headWriteFont = new WriteFont();
+        headWriteFont.setFontHeightInPoints((short)11);
+        headWriteCellStyle.setWriteFont(headWriteFont);
        // headWriteCellStyle.setWrapped(false);
 
         //excel如需下载到本地,只需要将response.getOutputStream()换成File即可(注释掉以上response代码)
-        EasyExcel.write(response.getOutputStream(), PilebodycheckMonthDto.class)
+       /* EasyExcel.write(response.getOutputStream(), PilebodycheckMonthDto.class)
                 //设置输出excel版本,不设置默认为xlsx
                 .excelType(ExcelTypeEnum.XLS).head(PilebodycheckMonthDto.class)
                 //设置拦截器或自定义样式
@@ -192,7 +192,33 @@ public class IndexController {
                 .relativeHeadRowIndex(9)
 
                 //这里的addsumColomn方法是个添加合计的方法,可删除
-                .doWrite(pilebodysList);
+                .doWrite(pilebodysList);*/
+
+        ExcelWriter excelWriter = null;
+        try{
+            MonthSheetWriteHandler monthSheetWriteHandler = new MonthSheetWriteHandler();
+            monthSheetWriteHandler.setSupplierName("xx供应商");
+            monthSheetWriteHandler.setCityCompanyName("xx分公司");
+            excelWriter =  EasyExcel.write(response.getOutputStream(), PilebodycheckMonthDto.class)
+                    //设置输出excel版本,不设置默认为xlsx
+                    .excelType(ExcelTypeEnum.XLS).head(PilebodycheckMonthDto.class)
+                    //设置拦截器或自定义样式
+                    .registerWriteHandler(monthSheetWriteHandler)
+                    .registerWriteHandler(new HorizontalCellStyleStrategy(headWriteCellStyle,contentWriteCellStyle))
+                    .registerWriteHandler(new CustomerRowWriteHandler())
+                    // .sheet("存量建筑垃圾堆体治理进度月报表")
+                    //设置默认样式及写入头信息开始的行数
+                    .useDefaultStyle(true).relativeHeadRowIndex(10)
+                    //这里的addsumColomn方法是个添加合计的方法,可删除
+                    .build();
+            WriteSheet writeSheet = EasyExcel.writerSheet("存量建筑垃圾堆体治理进度月报表").build();
+            excelWriter.write(pilebodysList, writeSheet);
+        }finally {
+            // 千万别忘记finish 会帮忙关闭流
+            if (excelWriter != null) {
+                excelWriter.finish();
+            }
+        }
 
 
         // return new WebApiResponse(200, "生成excel文件成功", null);
