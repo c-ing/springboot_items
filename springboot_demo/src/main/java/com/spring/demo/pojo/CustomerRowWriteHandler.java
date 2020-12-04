@@ -29,6 +29,7 @@ public class CustomerRowWriteHandler implements RowWriteHandler {
         System.out.println(row.getRowNum());
         System.out.println(integer);
         System.out.println(aBoolean);
+        System.out.println(row.getCell(2).getStringCellValue());
         System.out.println("-----------------------");
 
 

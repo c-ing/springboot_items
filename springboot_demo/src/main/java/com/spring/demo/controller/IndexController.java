@@ -147,12 +147,13 @@ public class IndexController {
         pilebodysList.get(1).setOrderNum("本月合计");
         pilebodysList.get(2).setOrderNum("本年累计");
 
+        pilebodysList.get(0).setName("aa");
 
-      /*  response.setContentType("application/vnd.ms-excel");
+        response.setContentType("application/vnd.ms-excel");
         response.setCharacterEncoding("utf-8");
         // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
         String fileName = URLEncoder.encode("企业对账函-函证账户余额及发票", "UTF-8");
-        response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xls");*/
+        response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
         //内容样式策略
         WriteCellStyle contentWriteCellStyle = new WriteCellStyle();
         //垂直居中,水平居中
@@ -180,7 +181,7 @@ public class IndexController {
        // headWriteCellStyle.setWrapped(false);
 
         //excel如需下载到本地,只需要将response.getOutputStream()换成File即可(注释掉以上response代码)
-       /* EasyExcel.write(response.getOutputStream(), PilebodycheckMonthDto.class)
+      /*  EasyExcel.write(response.getOutputStream(), PilebodycheckMonthDto.class)
                 //设置输出excel版本,不设置默认为xlsx
                 .excelType(ExcelTypeEnum.XLS).head(PilebodycheckMonthDto.class)
                 //设置拦截器或自定义样式
@@ -195,7 +196,7 @@ public class IndexController {
                 //这里的addsumColomn方法是个添加合计的方法,可删除
                 .doWrite(pilebodysList);*/
 
-        /*ExcelWriter excelWriter = null;
+        ExcelWriter excelWriter = null;
         try{
             MonthSheetWriteHandler monthSheetWriteHandler = new MonthSheetWriteHandler();
             monthSheetWriteHandler.setSupplierName("xx供应商");
@@ -212,15 +213,15 @@ public class IndexController {
                     .useDefaultStyle(true).relativeHeadRowIndex(10)
                     //这里的addsumColomn方法是个添加合计的方法,可删除
                     .build();
-            WriteSheet writeSheet = EasyExcel.writerSheet("存量建筑垃圾堆体治理进度月报表").build();
+            WriteSheet writeSheet = EasyExcel.writerSheet("企业对账函").build();
             excelWriter.write(pilebodysList, writeSheet);
         }finally {
             // 千万别忘记finish 会帮忙关闭流
             if (excelWriter != null) {
                 excelWriter.finish();
             }
-        }*/
-        ZipUtil zipUtil = new ZipUtil();
-        zipUtil.execute(response);
+        }
+      // ZipUtil zipUtil = new ZipUtil();
+      // zipUtil.execute(response);
     }
 }
